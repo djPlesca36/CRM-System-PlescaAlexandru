@@ -1,0 +1,15 @@
+D:\0 - faculty\Object Oriented Programing\CRM-System-PlescaAlexandru\CRM-Project\bin\Debug\net8.0\CRM-Project.exe
+D:\0 - faculty\Object Oriented Programing\CRM-System-PlescaAlexandru\CRM-Project\bin\Debug\net8.0\CRM-Project.deps.json
+D:\0 - faculty\Object Oriented Programing\CRM-System-PlescaAlexandru\CRM-Project\bin\Debug\net8.0\CRM-Project.runtimeconfig.json
+D:\0 - faculty\Object Oriented Programing\CRM-System-PlescaAlexandru\CRM-Project\bin\Debug\net8.0\CRM-Project.dll
+D:\0 - faculty\Object Oriented Programing\CRM-System-PlescaAlexandru\CRM-Project\bin\Debug\net8.0\CRM-Project.pdb
+D:\0 - faculty\Object Oriented Programing\CRM-System-PlescaAlexandru\CRM-Project\obj\Debug\net8.0\CRM-Project.GeneratedMSBuildEditorConfig.editorconfig
+D:\0 - faculty\Object Oriented Programing\CRM-System-PlescaAlexandru\CRM-Project\obj\Debug\net8.0\CRM-Project.AssemblyInfoInputs.cache
+D:\0 - faculty\Object Oriented Programing\CRM-System-PlescaAlexandru\CRM-Project\obj\Debug\net8.0\CRM-Project.AssemblyInfo.cs
+D:\0 - faculty\Object Oriented Programing\CRM-System-PlescaAlexandru\CRM-Project\obj\Debug\net8.0\CRM-Project.csproj.CoreCompileInputs.cache
+D:\0 - faculty\Object Oriented Programing\CRM-System-PlescaAlexandru\CRM-Project\obj\Debug\net8.0\CRM-Project.sourcelink.json
+D:\0 - faculty\Object Oriented Programing\CRM-System-PlescaAlexandru\CRM-Project\obj\Debug\net8.0\CRM-Project.dll
+D:\0 - faculty\Object Oriented Programing\CRM-System-PlescaAlexandru\CRM-Project\obj\Debug\net8.0\refint\CRM-Project.dll
+D:\0 - faculty\Object Oriented Programing\CRM-System-PlescaAlexandru\CRM-Project\obj\Debug\net8.0\CRM-Project.pdb
+D:\0 - faculty\Object Oriented Programing\CRM-System-PlescaAlexandru\CRM-Project\obj\Debug\net8.0\CRM-Project.genruntimeconfig.cache
+D:\0 - faculty\Object Oriented Programing\CRM-System-PlescaAlexandru\CRM-Project\obj\Debug\net8.0\ref\CRM-Project.dll
