@@ -51,11 +51,8 @@ public class CRMSystem
 
     public void SaveData()
     {
-        // Save clients
         File.WriteAllLines(ClientsFile, clients.Select(c => $"{c.Id},{c.Name},{c.Email},{c.Phone}"));
-        // Save employees
         File.WriteAllLines(EmployeesFile, employees.Select(e => $"{e.Id},{e.Name},{e.Email},{e.Role}"));
-        // Save orders
         File.WriteAllLines(OrdersFile, orders.Select(o => $"{o.OrderId},{o.ClientId},{o.EmployeeId},{o.Status},{o.Date}"));
         Console.WriteLine("Data saved successfully to CSV files.");
     }
