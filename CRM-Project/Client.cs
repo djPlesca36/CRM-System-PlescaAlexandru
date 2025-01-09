@@ -1,5 +1,5 @@
-using System;
-
+namespace CRMProject
+{
 public class Client : Person
 {
     public string Phone { get; set; }
@@ -14,4 +14,6 @@ public class Client : Person
     {
         return base.ToString() + $", Phone: {Phone}";
     }
+}
+
 }

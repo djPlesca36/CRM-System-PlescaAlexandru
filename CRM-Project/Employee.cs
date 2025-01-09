@@ -1,6 +1,6 @@
-using System;
-
-public class Employee : Person
+namespace CRMProject
+{
+ public class Employee : Person
 {
     public string Role { get; set; }
 
@@ -14,4 +14,5 @@ public class Employee : Person
     {
         return base.ToString() + $", Role: {Role}";
     }
+}
 }

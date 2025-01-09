@@ -1,88 +1,128 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
+namespace CRMProject
+{
 public class CRMSystem
 {
     private List<Client> clients = new List<Client>();
     private List<Employee> employees = new List<Employee>();
     private List<Order> orders = new List<Order>();
 
-    private const string ClientsFile = "clients.csv";
-    private const string EmployeesFile = "employees.csv";
-    private const string OrdersFile = "orders.csv";
+    public void AddClient(Client client) => clients.Add(client);
 
-    public void AddClient(Client client)
+    public void UpdateClient(int id, string name, string email, string phone)
     {
-        clients.Add(client);
-        Console.WriteLine("Client added successfully.");
+        var client = clients.Find(c => c.Id == id);
+        if (client != null)
+        {
+            client.Name = name;
+            client.Email = email;
+            client.Phone = phone;
+        }
+        else
+        {
+            Console.WriteLine("Client not found.");
+        }
     }
 
-    public void AddEmployee(Employee employee)
+    public void DeleteClient(int id)
     {
-        employees.Add(employee);
-        Console.WriteLine("Employee added successfully.");
-    }
-
-    public void AddOrder(Order order)
-    {
-        orders.Add(order);
-        Console.WriteLine("Order added successfully.");
+        var client = clients.Find(c => c.Id == id);
+        if (client != null)
+        {
+            clients.Remove(client);
+        }
+        else
+        {
+            Console.WriteLine("Client not found.");
+        }
     }
 
     public void DisplayClients()
     {
-        Console.WriteLine("Clients:");
-        clients.ForEach(c => Console.WriteLine(c));
+        foreach (var client in clients)
+        {
+            Console.WriteLine(client);
+        }
+    }
+
+    public void AddEmployee(Employee employee) => employees.Add(employee);
+
+    public void UpdateEmployee(int id, string name, string email, string role)
+    {
+        var employee = employees.Find(e => e.Id == id);
+        if (employee != null)
+        {
+            employee.Name = name;
+            employee.Email = email;
+            employee.Role = role;
+        }
+        else
+        {
+            Console.WriteLine("Employee not found.");
+        }
+    }
+
+    public void DeleteEmployee(int id)
+    {
+        var employee = employees.Find(e => e.Id == id);
+        if (employee != null)
+        {
+            employees.Remove(employee);
+        }
+        else
+        {
+            Console.WriteLine("Employee not found.");
+        }
     }
 
     public void DisplayEmployees()
     {
-        Console.WriteLine("Employees:");
-        employees.ForEach(e => Console.WriteLine(e));
+        foreach (var employee in employees)
+        {
+            Console.WriteLine(employee);
+        }
+    }
+
+    public void AddOrder(Order order) => orders.Add(order);
+
+    public void UpdateOrder(int id, int clientId, int employeeId, string status, string orderDate)
+    {
+        var order = orders.Find(o => o.OrderId == id);
+        if (order != null)
+        {
+            order.ClientId = clientId;
+            order.EmployeeId = employeeId;
+            order.Status = status;
+            order.OrderDate = orderDate;
+        }
+        else
+        {
+            Console.WriteLine("Order not found.");
+        }
+    }
+
+    public void DeleteOrder(int id)
+    {
+        var order = orders.Find(o => o.OrderId == id);
+        if (order != null)
+        {
+            orders.Remove(order);
+        }
+        else
+        {
+            Console.WriteLine("Order not found.");
+        }
     }
 
     public void DisplayOrders()
     {
-        Console.WriteLine("Orders:");
-        orders.ForEach(o => Console.WriteLine(o));
-    }
-
-    public void SaveData()
-    {
-        File.WriteAllLines(ClientsFile, clients.Select(c => $"{c.Id},{c.Name},{c.Email},{c.Phone}"));
-        File.WriteAllLines(EmployeesFile, employees.Select(e => $"{e.Id},{e.Name},{e.Email},{e.Role}"));
-        File.WriteAllLines(OrdersFile, orders.Select(o => $"{o.OrderId},{o.ClientId},{o.EmployeeId},{o.Status},{o.Date}"));
-        Console.WriteLine("Data saved successfully to CSV files.");
-    }
-
-    public void LoadData()
-    {
-        if (File.Exists(ClientsFile))
+        foreach (var order in orders)
         {
-            clients = File.ReadAllLines(ClientsFile)
-                          .Select(line => line.Split(','))
-                          .Select(parts => new Client(int.Parse(parts[0]), parts[1], parts[2], parts[3]))
-                          .ToList();
+            Console.WriteLine(order);
         }
-
-        if (File.Exists(EmployeesFile))
-        {
-            employees = File.ReadAllLines(EmployeesFile)
-                            .Select(line => line.Split(','))
-                            .Select(parts => new Employee(int.Parse(parts[0]), parts[1], parts[2], parts[3]))
-                            .ToList();
-        }
-
-        if (File.Exists(OrdersFile))
-        {
-            orders = File.ReadAllLines(OrdersFile)
-                         .Select(line => line.Split(','))
-                         .Select(parts => new Order(int.Parse(parts[0]), int.Parse(parts[1]), int.Parse(parts[2]), parts[3], parts[4]))
-                         .ToList();
-        }
-
-        Console.WriteLine("Data loaded successfully from CSV files.");
     }
+}
+
 }

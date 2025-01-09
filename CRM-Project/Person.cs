@@ -2,27 +2,9 @@ using System;
 
 public class Person
 {
-    private int id;
-    private string name = string.Empty;
-    private string email = string.Empty;
-
-    public int Id
-    {
-        get { return id; }
-        set { id = value; }
-    }
-
-    public string Name
-    {
-        get { return name; }
-        set { name = value; }
-    }
-
-    public string Email
-    {
-        get { return email; }
-        set { email = value; }
-    }
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Email { get; set; }
 
     public Person(int id, string name, string email)
     {

@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "ajEzrLdm2/A=",
+  "dgSpecHash": "MuziaKY+XDE=",
   "success": true,
-  "projectFilePath": "D:\\0 - faculty\\Object Oriented Programing\\CRM-System-PlescaAlexandru\\CRM-Project\\CRM-Project.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\1 - University\\Y2\\Object Oriented Programing\\CRM-System-PlescaAlexandru\\CRM-Project\\CRM-Project.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\plesc\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.11\\microsoft.netcore.app.ref.8.0.11.nupkg.sha512",
+    "C:\\Users\\plesc\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.11\\microsoft.windowsdesktop.app.ref.8.0.11.nupkg.sha512",
+    "C:\\Users\\plesc\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.11\\microsoft.aspnetcore.app.ref.8.0.11.nupkg.sha512",
+    "C:\\Users\\plesc\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.11\\microsoft.netcore.app.host.win-x64.8.0.11.nupkg.sha512"
+  ],
   "logs": []
 }
