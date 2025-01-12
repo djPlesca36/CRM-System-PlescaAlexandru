@@ -1,19 +1,14 @@
-namespace CRMProject
+class Client
 {
-public class Client : Person
-{
-    public string Phone { get; set; }
+    public int ID { get; set; }
+    public required string Name { get; set; } // Add required
+    public required string Email { get; set; } // Add required
 
-    public Client(int id, string name, string email, string phone)
-        : base(id, name, email)
+    public Client() // Ensure properties are set in the constructor
     {
-        Phone = phone;
+        Name = string.Empty;
+        Email = string.Empty;
     }
 
-    public override string ToString()
-    {
-        return base.ToString() + $", Phone: {Phone}";
-    }
-}
-
+    public override string ToString() => $"Client[ID={ID}, Name={Name}, Email={Email}]";
 }

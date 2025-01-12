@@ -1,25 +1,22 @@
-namespace CRMProject
-{
-public class Order
-{
-    public int OrderId { get; set; }
-    public int ClientId { get; set; }
-    public int EmployeeId { get; set; }
-    public string Status { get; set; }
-    public string OrderDate { get; set; }
+using System;
 
-    public Order(int orderId, int clientId, int employeeId, string status, string orderDate)
+class Order
+{
+    public int ID { get; set; }
+    public Client Client { get; set; } = null!;
+    public Employee Employee { get; set; } = null!;
+    public string Description { get; set; } = string.Empty;
+
+    public Order(int id, Client client, Employee employee, string description)
     {
-        OrderId = orderId;
-        ClientId = clientId;
-        EmployeeId = employeeId;
-        Status = status;
-        OrderDate = orderDate;
+        ID = id;
+        Client = client ?? throw new ArgumentNullException(nameof(client));
+        Employee = employee ?? throw new ArgumentNullException(nameof(employee));
+        Description = description ?? throw new ArgumentNullException(nameof(description));
     }
 
     public override string ToString()
     {
-        return $"Order ID: {OrderId}, Client ID: {ClientId}, Employee ID: {EmployeeId}, Status: {Status}, Order Date: {OrderDate}";
+        return $"Order ID: {ID}, Client: {Client.Name}, Employee: {Employee.Name}, Description: {Description}";
     }
-}
 }

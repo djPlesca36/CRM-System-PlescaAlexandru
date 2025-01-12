@@ -1,18 +1,12 @@
-namespace CRMProject
+class Employee
 {
- public class Employee : Person
-{
-    public string Role { get; set; }
+    public int ID { get; set; }
+    public required string Name { get; set; } // Add required
 
-    public Employee(int id, string name, string email, string role)
-        : base(id, name, email)
+    public Employee() // Ensure properties are set in the constructor
     {
-        Role = role;
+        Name = string.Empty;
     }
 
-    public override string ToString()
-    {
-        return base.ToString() + $", Role: {Role}";
-    }
-}
+    public override string ToString() => $"Employee[ID={ID}, Name={Name}]";
 }
