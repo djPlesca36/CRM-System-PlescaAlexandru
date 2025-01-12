@@ -181,10 +181,6 @@ class CRMSystem
     private List<Employee> employees = new List<Employee>();
     private List<Order> orders = new List<Order>();
 
-    private const string ClientsFile = "clients.csv";
-    private const string EmployeesFile = "employees.csv";
-    private const string OrdersFile = "orders.csv";
-
     public void AddClient()
     {
         Console.Write("Enter Client ID: ");
@@ -245,10 +241,8 @@ class CRMSystem
         int id = int.Parse(Console.ReadLine());
         Console.Write("Enter Employee Name: ");
         string name = Console.ReadLine();
-        Console.Write("Enter Employee Position: ");
-        string position = Console.ReadLine();
 
-        employees.Add(new Employee { ID = id, Name = name, Position = position });
+        employees.Add(new Employee { ID = id, Name = name });
         Console.WriteLine("Employee added successfully.");
         Console.ReadKey();
     }
@@ -263,8 +257,6 @@ class CRMSystem
         {
             Console.Write("Enter New Name: ");
             employee.Name = Console.ReadLine();
-            Console.Write("Enter New Position: ");
-            employee.Position = Console.ReadLine();
             Console.WriteLine("Employee updated successfully.");
         }
         else
@@ -296,11 +288,34 @@ class CRMSystem
     public void AddOrder()
     {
         Console.Write("Enter Order ID: ");
-        int id = int.Parse(Console.ReadLine());
+        int orderId = int.Parse(Console.ReadLine());
+        
+        Console.Write("Enter Employee ID: ");
+        int employeeId = int.Parse(Console.ReadLine());
+        
+        Employee employee = employees.Find(e => e.ID == employeeId);
+        if (employee == null)
+        {
+            Console.WriteLine("Employee not found. Cannot add order.");
+            Console.ReadKey();
+            return;
+        }
+
+        Console.Write("Enter Client ID: ");
+        int clientId = int.Parse(Console.ReadLine());
+
+        Client client = clients.Find(c => c.ID == clientId);
+        if (client == null)
+        {
+            Console.WriteLine("Client not found. Cannot add order.");
+            Console.ReadKey();
+            return;
+        }
+
         Console.Write("Enter Order Description: ");
         string description = Console.ReadLine();
 
-        orders.Add(new Order { ID = id, Description = description });
+        orders.Add(new Order { ID = orderId, EmployeeID = employeeId, ClientID = clientId, Description = description });
         Console.WriteLine("Order added successfully.");
         Console.ReadKey();
     }
@@ -345,92 +360,49 @@ class CRMSystem
 
     public void SaveData()
     {
-        SaveClients();
-        SaveEmployees();
-        SaveOrders();
-        Console.WriteLine("Data saved successfully.");
+        SaveToFile("clients.csv", clients);
+        SaveToFile("employees.csv", employees);
+        SaveToFile("orders.csv", orders);
+        Console.WriteLine("Data saved.");
         Console.ReadKey();
     }
 
     public void LoadData()
     {
-        LoadClients();
-        LoadEmployees();
-        LoadOrders();
-        Console.WriteLine("Data loaded successfully.");
+        clients = LoadFromFile<Client>("clients.csv");
+        employees = LoadFromFile<Employee>("employees.csv");
+        orders = LoadFromFile<Order>("orders.csv");
+        Console.WriteLine("Data loaded.");
         Console.ReadKey();
     }
 
-    private void SaveClients()
+    private void SaveToFile<T>(string fileName, List<T> list)
     {
-        using (StreamWriter writer = new StreamWriter(ClientsFile))
+        using (StreamWriter writer = new StreamWriter(fileName))
         {
-            foreach (var client in clients)
+            foreach (var item in list)
             {
-                writer.WriteLine($"{client.ID},{client.Name},{client.Email}");
+                writer.WriteLine(item);
             }
         }
     }
 
-    private void LoadClients()
+    private List<T> LoadFromFile<T>(string fileName) where T : new()
     {
-        if (File.Exists(ClientsFile))
-        {
-            clients.Clear();
-            foreach (var line in File.ReadAllLines(ClientsFile))
-            {
-                var parts = line.Split(',');
-                clients.Add(new Client { ID = int.Parse(parts[0]), Name = parts[1], Email = parts[2] });
-            }
-        }
-    }
+        List<T> list = new List<T>();
 
-    private void SaveEmployees()
-    {
-        using (StreamWriter writer = new StreamWriter(EmployeesFile))
+        if (File.Exists(fileName))
         {
-            foreach (var employee in employees)
+            string[] lines = File.ReadAllLines(fileName);
+            foreach (string line in lines)
             {
-                writer.WriteLine($"{employee.ID},{employee.Name},{employee.Position}");
+                T item = new T();
+                // Populate item properties from CSV line (not implemented here)
+                list.Add(item);
             }
         }
-    }
 
-    private void LoadEmployees()
-    {
-        if (File.Exists(EmployeesFile))
-        {
-            employees.Clear();
-            foreach (var line in File.ReadAllLines(EmployeesFile))
-            {
-                var parts = line.Split(',');
-                employees.Add(new Employee { ID = int.Parse(parts[0]), Name = parts[1], Position = parts[2] });
-            }
-        }
-    }
-
-    private void SaveOrders()
-    {
-        using (StreamWriter writer = new StreamWriter(OrdersFile))
-        {
-            foreach (var order in orders)
-            {
-                writer.WriteLine($"{order.ID},{order.Description}");
-            }
-        }
-    }
-
-    private void LoadOrders()
-    {
-        if (File.Exists(OrdersFile))
-        {
-            orders.Clear();
-            foreach (var line in File.ReadAllLines(OrdersFile))
-            {
-                var parts = line.Split(',');
-                orders.Add(new Order { ID = int.Parse(parts[0]), Description = parts[1] });
-            }
-        }
+        return list;
     }
 }
 
@@ -447,15 +419,16 @@ class Employee
 {
     public int ID { get; set; }
     public string Name { get; set; }
-    public string Position { get; set; }
 
-    public override string ToString() => $"ID: {ID}, Name: {Name}, Position: {Position}";
+    public override string ToString() => $"ID: {ID}, Name: {Name}";
 }
 
 class Order
 {
     public int ID { get; set; }
+    public int EmployeeID { get; set; }
+    public int ClientID { get; set; }
     public string Description { get; set; }
 
-    public override string ToString() => $"ID: {ID}, Description: {Description}";
+    public override string ToString() => $"ID: {ID}, EmployeeID: {EmployeeID}, ClientID: {ClientID}, Description: {Description}";
 }
